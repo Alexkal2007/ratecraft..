@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RateCraft - Freelance Hourly Rate Calculator & Pricing Guide</title>
+  <meta name="description" content="Calculate your required freelance hourly rate and project pricing in seconds based on your target net income, expenses, and billable hours.">
+  <link rel="canonical" href="https://alexkal2007.github.io/RATECRAFT/">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #10b981;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; }
+
+    /* Header & Navigation */
+    header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .header-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; }
+    .brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; font-size: 1.25rem; color: var(--primary); }
+    .brand-icon { background: var(--primary); color: white; padding: 0.3rem 0.6rem; border-radius: 8px; font-size: 0.9rem; }
+    
+    nav { display: flex; gap: 1rem; align-items: center; }
+    nav a { text-decoration: none; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.2s; }
+    nav a:hover, nav a.active { color: var(--primary); background: #eff6ff; }
+
+    /* Layout Containers */
+    .container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+
+    .page-section { display: none; background: var(--surface); padding: 2.5rem; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 2rem; }
+    .page-section.active { display: block; }
+
+    /* Typography */
+    h1 { font-size: 2.2rem; margin-bottom: 0.75rem; color: var(--text); letter-spacing: -0.02em; }
+    h2 { font-size: 1.5rem; margin: 1.5rem 0 1rem; color: var(--text); }
+    p { margin-bottom: 1rem; color: #334155; }
+
+    /* Calculator Grid & Controls */
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
+    @media (max-width: 768px) { .calc-grid { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.4rem; color: #1e293b; }
+    .input-wrapper { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: #fff; }
+    .input-wrapper:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+    .input-prefix, .input-suffix { padding: 0.6rem 0.8rem; background: #f8fafc; color: var(--text-muted); font-weight: 500; font-size: 0.9rem; }
+    .input-wrapper input, .input-wrapper select { border: none; outline: none; padding: 0.6rem 0.8rem; width: 100%; font-size: 1rem; font-family: inherit; }
+
+    /* Calculator Output Box */
+    .results-card { background: #1e293b; color: white; padding: 1.5rem; border-radius: var(--radius); }
+    .hero-stat-label { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; }
+    .hero-stat-value { font-size: 2.75rem; font-weight: 700; color: #38bdf8; margin: 0.25rem 0 1rem; }
+    
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-top: 1px solid #334155; padding-top: 1rem; margin-bottom: 1rem; }
+    .stat-item-title { font-size: 0.8rem; color: #94a3b8; }
+    .stat-item-val { font-size: 1.15rem; font-weight: 600; color: #f8fafc; }
+
+    /* Breakdown Bar */
+    .bar-container { height: 10px; background: #334155; border-radius: 5px; overflow: hidden; display: flex; margin: 1rem 0 0.5rem; }
+    .bar-segment { height: 100%; transition: width 0.3s; }
+    .bar-exp { background: #ef4444; }
+    .bar-tax { background: #f59e0b; }
+    .bar-net { background: #10b981; }
+    .bar-legend { display: flex; justify-content: space-between; font-size: 0.75rem; color: #94a3b8; }
+
+    .btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 1rem; }
+    .btn-action:hover { background: var(--primary-hover); }
+
+    /* Contact Form */
+    .contact-form input, .contact-form textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem; font-family: inherit; }
+
+    /* Footer */
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-links a:hover { color: var(--primary); }
+
+    /* Cookie Banner */
+    .cookie-banner { position: fixed; bottom: 1rem; left: 1rem; right: 1rem; max-width: 500px; background: var(--text); color: white; padding: 1.25rem; border-radius: var(--radius); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); z-index: 1000; display: flex; flex-direction: column; gap: 0.75rem; }
+    .cookie-actions { display: flex; gap: 0.5rem; }
+    .btn-cookie { padding: 0.4rem 1rem; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; }
+    .btn-cookie-accept { background: var(--primary); color: white; }
+    .btn-cookie-decline { background: #334155; color: white; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="brand" onclick="switchTab('calculator'); return false;">
+        <span class="brand-icon">$/hr</span>
+        <span>RateCraft</span>
+      </a>
+      <nav id="mainNav">
+        <a href="#calculator" class="nav-link active" onclick="switchTab('calculator')">Calculator</a>
+        <a href="#guide" class="nav-link" onclick="switchTab('guide')">Pricing Guide</a>
+        <a href="#about" class="nav-link" onclick="switchTab('about')">About Us</a>
+        <a href="#contact" class="nav-link" onclick="switchTab('contact')">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Container -->
+  <div class="container">
+    <main class="main-content">
+
+      <!-- SECTION 1: CALCULATOR -->
+      <section id="calculator" class="page-section active">
+        <h1>Freelance Hourly Rate Calculator</h1>
+        <p>Determine your minimum required hourly rate and project pricing instantly based on your income goals, business expenses, and billable time.</p>
+
+        <div class="calc-grid">
+          <!-- Inputs -->
+          <div class="calc-inputs">
+            <div class="form-group">
+              <label for="currency">Currency</label>
+              <div class="input-wrapper">
+                <select id="currency" onchange="calculateRate()">
+                  <option value="€">EUR (€)</option>
+                  <option value="$">USD ($)</option>
+                  <option value="£">GBP (£)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="targetIncome">Target Net Monthly Income</label>
+              <div class="input-wrapper">
+                <span class="input-prefix curr-symbol">€</span>
+                <input type="number" id="targetIncome" value="2500" oninput="calculateRate()">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="expenses">Monthly Business Expenses</label>
+              <div class="input-wrapper">
+                <span class="input-prefix curr-symbol">€</span>
+                <input type="number" id="expenses" value="400" oninput="calculateRate()">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="taxRate">Estimated Tax & Insurance (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="taxRate" value="25" oninput="calculateRate()">
+                <span class="input-suffix">%</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="hoursPerWeek">Billable Hours per Week</label>
+              <div class="input-wrapper">
+                <input type="number" id="hoursPerWeek" value="25" oninput="calculateRate()">
+                <span class="input-suffix">hrs</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="offWeeks">Non-Billable Weeks / Vacation per Year</label>
+              <div class="input-wrapper">
+                <input type="number" id="offWeeks" value="4" oninput="calculateRate()">
+                <span class="input-suffix">weeks</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Outputs -->
+          <div class="results-card">
+            <span class="hero-stat-label">Required Hourly Rate</span>
+            <div class="hero-stat-value" id="resHourlyRate">€36.50/hr</div>
+
+            <div class="stat-row">
+              <div>
+                <div class="stat-item-title">Min. Project Price (10 hrs)</div>
+                <div class="stat-item-val" id="resMinProject">€365</div>
+              </div>
+              <div>
+                <div class="stat-item-title">Gross Monthly Revenue</div>
+                <div class="stat-item-val" id="resGrossMonthly">€3,866</div>
+              </div>
+            </div>
+
+            <div class="stat-row">
+              <div>
+                <div class="stat-item-title">Gross Yearly Revenue</div>
+                <div class="stat-item-val" id="resGrossYearly">€46,400</div>
+              </div>
+              <div>
+                <div class="stat-item-title">Annual Billable Hours</div>
+                <div class="stat-item-val" id="resBillableHours">1,200 hrs</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 1rem;">
+              <div class="stat-item-title">Revenue Breakdown</div>
+              <div class="bar-container">
+                <div id="barExp" class="bar-segment bar-exp" style="width: 10%;"></div>
+                <div id="barTax" class="bar-segment bar-tax" style="width: 25%;"></div>
+                <div id="barNet" class="bar-segment bar-net" style="width: 65%;"></div>
+              </div>
+              <div class="bar-legend">
+                <span>Expenses</span>
+                <span>Taxes</span>
+                <span>Net Income</span>
+              </div>
+            </div>
+
+            <button class="btn-action" onclick="window.print()">Export / Print Quote</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: GUIDE -->
+      <section id="guide" class="page-section">
+        <h1>How to Calculate Your Freelance Rates Realistically</h1>
+        <p>Setting an accurate rate is one of the most vital tasks for freelancers, agency owners, and independent professionals. Most beginners make the mistake of taking an employee hourly rate and multiplying it directly, ignoring essential business costs.</p>
+        
+        <h2>1. Account for Non-Billable Hours</h2>
+        <p>Unlike full-time employees, freelancers do not spend 40 hours a week on client work. A significant portion of your week is spent on admin, client onboarding, invoicing, marketing, and self-education. Realistically, most freelancers only achieve 20 to 25 billable hours per week.</p>
+
+        <h2>2. Cover Business Overhead & Taxes</h2>
+        <p>Your rate must cover recurring business expenses such as software subscriptions, hardware depreciation, internet, office rental, accounting fees, and local taxes. Always factor in your self-employment taxes before setting a final quote.</p>
+
+        <h2>3. Price Based on Value, Not Just Hours</h2>
+        <p>Once you establish your baseline hourly rate using RateCraft, consider transitioning to value-based project rates for experienced work to maximize earning potential.</p>
+      </section>
+
+      <!-- SECTION 3: ABOUT -->
+      <section id="about" class="page-section">
+        <h1>About RateCraft</h1>
+        <p>RateCraft is a free financial utility tool designed to help independent creators, designers, developers, and consultants price their services accurately.</p>
+        <p>Our mission is to prevent freelancer burnout and undercharging by bringing transparency to business overhead calculations and rate estimations.</p>
+      </section>
+
+      <!-- SECTION 4: CONTACT -->
+      <section id="contact" class="page-section">
+        <h1>Contact Us</h1>
+        <p>Have questions, feedback, or feature requests regarding RateCraft? Fill out the form below to reach out to our team.</p>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea rows="5" placeholder="Your Message..." required></textarea>
+          <button type="submit" class="btn-action">Send Message</button>
+        </form>
+      </section>
+
+      <!-- SECTION 5: PRIVACY POLICY -->
+      <section id="privacy" class="page-section">
+        <h1>Privacy Policy</h1>
+        <p>At RateCraft, accessible from alexkal2007.github.io/RATECRAFT/, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by RateCraft and how we use it.</p>
+        <h2>Log Files & Analytics</h2>
+        <p>RateCraft follows a standard procedure of using log files. We may collect non-personal browser data for analytical performance optimization.</p>
+      </section>
+
+      <!-- SECTION 6: TERMS OF USE -->
+      <section id="terms" class="page-section">
+        <h1>Terms of Service</h1>
+        <p>By accessing RateCraft, you agree to comply with these terms of service. The calculations provided by RateCraft are estimates for informational purposes only and do not constitute formal tax, legal, or financial advice.</p>
+      </section>
+
+      <!-- SECTION 7: COOKIE POLICY -->
+      <section id="cookies" class="page-section">
+        <h1>Cookie Policy</h1>
+        <p>We use essential cookies to maintain user preferences and provide analytics to enhance user experience.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <a href="#" class="brand" onclick="switchTab('calculator'); return false;">
+          <span class="brand-icon">$/hr</span> RateCraft
+        </a>
+        <p style="font-size:0.85rem; color: var(--text-muted); margin-top:0.5rem;">© 2026 RateCraft. All calculations are estimates.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#privacy" onclick="switchTab('privacy')">Privacy Policy</a>
+        <a href="#terms" onclick="switchTab('terms')">Terms of Service</a>
+        <a href="#cookies" onclick="switchTab('cookies')">Cookie Policy</a>
+        <a href="#contact" onclick="switchTab('contact')">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GDPR Cookie Banner -->
+  <div id="cookieBanner" class="cookie-banner" style="display:none;">
+    <div>We use cookies for performance analytics to keep RateCraft functional and accurate. See our <a href="#cookies" onclick="switchTab('cookies')" style="color:#38bdf8;">Cookie Policy</a>.</div>
+    <div class="cookie-actions">
+      <button class="btn-cookie btn-cookie-accept" onclick="acceptCookies()">Accept All</button>
+      <button class="btn-cookie btn-cookie-decline" onclick="acceptCookies()">Decline</button>
+    </div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    // Tab Switching Logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+      
+      const targetSec = document.getElementById(tabId);
+      if (targetSec) targetSec.classList.add('active');
+
+      const activeLink = document.querySelector(`.nav-link[href="#${tabId}"]`);
+      if (activeLink) activeLink.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Rate Calculator Logic
+    function calculateRate() {
+      const curr = document.getElementById('currency').value;
+      document.querySelectorAll('.curr-symbol').forEach(el => el.textContent = curr);
+
+      const targetNetMonthly = parseFloat(document.getElementById('targetIncome').value) || 0;
+      const monthlyExpenses = parseFloat(document.getElementById('expenses').value) || 0;
+      const taxPercentage = (parseFloat(document.getElementById('taxRate').value) || 0) / 100;
+      const hoursPerWeek = parseFloat(document.getElementById('hoursPerWeek').value) || 0;
+      const offWeeks = parseFloat(document.getElementById('offWeeks').value) || 0;
+
+      const workingWeeks = Math.max(1, 52 - offWeeks);
+      const annualBillableHours = workingWeeks * hoursPerWeek;
+
+      // Calculations
+      const annualNetGoal = targetNetMonthly * 12;
+      const annualExpenses = monthlyExpenses * 12;
+      const grossYearlyRequired = (annualNetGoal + annualExpenses) / (1 - taxPercentage);
+      const grossMonthly = grossYearlyRequired / 12;
+      const hourlyRate = annualBillableHours > 0 ? (grossYearlyRequired / annualBillableHours) : 0;
+      const minProjectPrice = hourlyRate * 10;
+
+      // UI Updates
+      document.getElementById('resHourlyRate').textContent = `${curr}${hourlyRate.toFixed(2)}/hr`;
+      document.getElementById('resMinProject').textContent = `${curr}${Math.round(minProjectPrice).toLocaleString()}`;
+      document.getElementById('resGrossMonthly').textContent = `${curr}${Math.round(grossMonthly).toLocaleString()}`;
+      document.getElementById('resGrossYearly').textContent = `${curr}${Math.round(grossYearlyRequired).toLocaleString()}`;
+      document.getElementById('resBillableHours').textContent = `${Math.round(annualBillableHours).toLocaleString()} hrs`;
+
+      // Breakdown Bar Updates
+      const expPercent = Math.round((annualExpenses / grossYearlyRequired) * 100) || 10;
+      const taxPercent = Math.round(((grossYearlyRequired * taxPercentage) / grossYearlyRequired) * 100) || 25;
+      const netPercent = 100 - expPercent - taxPercent;
+
+      document.getElementById('barExp').style.width = expPercent + '%';
+      document.getElementById('barTax').style.width = taxPercent + '%';
+      document.getElementById('barNet').style.width = netPercent + '%';
+    }
+
+    // Cookie Banner Logic
+    function acceptCookies() {
+      localStorage.setItem('ratecraft_cookies', 'accepted');
+      document.getElementById('cookieBanner').style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      calculateRate();
+      if (!localStorage.getItem('ratecraft_cookies')) {
+        document.getElementById('cookieBanner').style.display = 'flex';
+      }
+    });
+  </script>
+
+</body>
+</html>
