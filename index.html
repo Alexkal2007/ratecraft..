@@ -18,6 +18,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    html, body {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+  }
     :root {
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
@@ -105,6 +109,18 @@
     .btn-cookie { padding: 0.4rem 1rem; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; }
     .btn-cookie-accept { background: var(--primary); color: white; }
     .btn-cookie-decline { background: #334155; color: white; }
+    @media screen and (max-width: 600px) {
+      body, .container, main, section, div {
+          max-width: 100% !important;
+          padding-left: 10px !important;
+          padding-right: 10px !important;
+      }
+
+      input, select, button, textarea, table {
+          max-width: 100% !important;
+          box-sizing: border-box !important;
+      }
+  }
   </style>
 </head>
 <body>
