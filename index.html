@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RateCraft - Ultimate Freelance Hourly Rate Calculator & Professional Pricing Guide</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6567575728836416"
-     crossorigin="anonymous"></script>
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6567575728836416" crossorigin="anonymous"></script>
+  
   <meta name="description" content="Calculate your required freelance hourly rate, profit margins, and project pricing accurately based on net income goals, business overhead, taxes, and billable hours.">
   <link rel="canonical" href="https://alexkal2007.github.io/RATECRAFT/">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" href="favicon.png">
   <meta name="theme-color" content="#0f172a">
   
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,6 +22,7 @@
       max-width: 100% !important;
       overflow-x: hidden !important;
     }
+
     :root {
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
@@ -35,124 +36,420 @@
       --radius: 12px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.7; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    /* Header & Navigation */
-    header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-    .header-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; }
-    .brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; font-size: 1.25rem; color: var(--primary); }
-    .brand-icon { background: var(--primary); color: white; padding: 0.3rem 0.6rem; border-radius: 8px; font-size: 0.9rem; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    .brand-icon {
+      background: var(--primary);
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
     
-    nav { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
-    nav a { text-decoration: none; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.2s; }
-    nav a:hover, nav a.active { color: var(--primary); background: #eff6ff; }
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-    /* Layout Containers */
-    .container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+    nav a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
 
-    .page-section { display: none; background: var(--surface); padding: 2.5rem; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 2rem; }
-    .page-section.active { display: block; }
+    nav a:hover, nav a.active {
+      color: var(--primary);
+      background: #eff6ff;
+    }
 
-    /* Typography & Content Styling */
-    h1 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--text); letter-spacing: -0.02em; line-height: 1.3; }
-    h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--text); border-bottom: 2px solid #eff6ff; padding-bottom: 0.5rem; }
-    h3 { font-size: 1.15rem; margin: 1.25rem 0 0.5rem; color: #1e293b; font-weight: 600; }
-    p { margin-bottom: 1.2rem; color: #334155; }
-    ul, ol { margin-bottom: 1.2rem; padding-left: 1.5rem; color: #334155; }
-    li { margin-bottom: 0.5rem; }
-    strong { color: var(--text); }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
 
-    /* Calculator Grid & Controls */
-    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
-    @media (max-width: 768px) { .calc-grid { grid-template-columns: 1fr; } }
+    .page-section {
+      display: none;
+      background: var(--surface);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+    }
 
-    .form-group { margin-bottom: 1.25rem; }
-    .form-group label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.4rem; color: #1e293b; }
-    .input-wrapper { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: #fff; }
-    .input-wrapper:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-    .input-prefix, .input-suffix { padding: 0.6rem 0.8rem; background: #f8fafc; color: var(--text-muted); font-weight: 500; font-size: 0.9rem; }
-    .input-wrapper input, .input-wrapper select { border: none; outline: none; padding: 0.6rem 0.8rem; width: 100%; font-size: 1rem; font-family: inherit; color: var(--text); }
+    .page-section.active {
+      display: block;
+    }
 
-    /* Calculator Output Box */
-    .results-card { background: #1e293b; color: white; padding: 1.5rem; border-radius: var(--radius); }
-    .hero-stat-label { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; }
-    .hero-stat-value { font-size: 2.75rem; font-weight: 700; color: #38bdf8; margin: 0.25rem 0 1rem; }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin: 2rem 0 1rem;
+      color: var(--text);
+      border-bottom: 2px solid #eff6ff;
+      padding-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin: 1.25rem 0 0.5rem;
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 1.2rem;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin-bottom: 1.2rem;
+      padding-left: 1.5rem;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    strong {
+      color: var(--text);
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #1e293b;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    .input-prefix, .input-suffix {
+      padding: 0.6rem 0.8rem;
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .input-wrapper input, .input-wrapper select {
+      border: none;
+      outline: none;
+      padding: 0.6rem 0.8rem;
+      width: 100%;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text);
+    }
+
+    .results-card {
+      background: #1e293b;
+      color: white;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+    }
+
+    .hero-stat-label {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+    }
+
+    .hero-stat-value {
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin: 0.25rem 0 1rem;
+    }
     
-    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-top: 1px solid #334155; padding-top: 1rem; margin-bottom: 1rem; }
-    .stat-item-title { font-size: 0.8rem; color: #94a3b8; }
-    .stat-item-val { font-size: 1.15rem; font-weight: 600; color: #f8fafc; }
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      border-top: 1px solid #334155;
+      padding-top: 1rem;
+      margin-bottom: 1rem;
+    }
 
-    /* Breakdown Bar */
-    .bar-container { height: 10px; background: #334155; border-radius: 5px; overflow: hidden; display: flex; margin: 1rem 0 0.5rem; }
-    .bar-segment { height: 100%; transition: width 0.3s; }
-    .bar-exp { background: #ef4444; }
-    .bar-tax { background: #f59e0b; }
-    .bar-net { background: #10b981; }
-    .bar-legend { display: flex; justify-content: space-between; font-size: 0.75rem; color: #94a3b8; }
+    .stat-item-title {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
 
-    .btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 1rem; }
-    .btn-action:hover { background: var(--primary-hover); }
+    .stat-item-val {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #f8fafc;
+    }
 
-    /* Contact Form */
-    .contact-form input, .contact-form textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem; font-family: inherit; }
+    .bar-container {
+      height: 10px;
+      background: #334155;
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex;
+      margin: 1rem 0 0.5rem;
+    }
 
-    /* Footer */
-    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
-    .footer-container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
-    .footer-links a:hover { color: var(--primary); }
+    .bar-segment {
+      height: 100%;
+      transition: width 0.3s;
+    }
 
-    /* Cookie Banner */
-    .cookie-banner { position: fixed; bottom: 1rem; left: 1rem; right: 1rem; max-width: 500px; background: var(--text); color: white; padding: 1.25rem; border-radius: var(--radius); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); z-index: 1000; display: flex; flex-direction: column; gap: 0.75rem; }
-    .cookie-actions { display: flex; gap: 0.5rem; }
-    .btn-cookie { padding: 0.4rem 1rem; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; }
-    .btn-cookie-accept { background: var(--primary); color: white; }
-    .btn-cookie-decline { background: #334155; color: white; }
+    .bar-exp {
+      background: #ef4444;
+    }
+
+    .bar-tax {
+      background: #f59e0b;
+    }
+
+    .bar-net {
+      background: #10b981;
+    }
+
+    .bar-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 1rem;
+    }
+
+    .btn-action:hover {
+      background: var(--primary-hover);
+    }
+
+    .calculator-content-body {
+      border-top: 2px solid var(--border);
+      padding-top: 2rem;
+      margin-top: 2rem;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-family: inherit;
+    }
+
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+
+    .footer-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .cookie-banner {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      max-width: 500px;
+      background: var(--text);
+      color: white;
+      padding: 1.25rem;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .cookie-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-cookie {
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-cookie-accept {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-cookie-decline {
+      background: #334155;
+      color: white;
+    }
 
     @media screen and (max-width: 600px) {
       body, .container, main, section, div {
-          max-width: 100% !important;
-          padding-left: 10px !important;
-          padding-right: 10px !important;
+        max-width: 100% !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
       }
       input, select, button, textarea, table {
-          max-width: 100% !important;
-          box-sizing: border-box !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <div class="header-container">
-      <a href="#" class="brand" onclick="switchTab('calculator'); return false;">
+      <a class="brand" onclick="switchTab('calculator')">
         <span class="brand-icon">$/hr</span>
         <span>RateCraft</span>
       </a>
       <nav id="mainNav">
-        <a href="#calculator" class="nav-link active" onclick="switchTab('calculator')">Calculator</a>
-        <a href="#guide" class="nav-link" onclick="switchTab('guide')">Pricing Guide</a>
-        <a href="#about" class="nav-link" onclick="switchTab('about')">About Us</a>
-        <a href="#contact" class="nav-link" onclick="switchTab('contact')">Contact</a>
+        <a class="nav-link active" onclick="switchTab('calculator')">Calculator & Guide</a>
+        <a class="nav-link" onclick="switchTab('about')">About Us</a>
+        <a class="nav-link" onclick="switchTab('contact')">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- Container -->
   <div class="container">
     <main class="main-content">
 
-      <!-- SECTION 1: CALCULATOR -->
       <section id="calculator" class="page-section active">
         <h1>Freelance Hourly Rate & Project Pricing Calculator</h1>
         <p>Accurately determine your minimum required hourly rate, gross revenue targets, and profitable project estimates based on your personalized net income goals, recurring business overhead expenses, estimated tax obligations, and realistic billable working hours.</p>
 
         <div class="calc-grid">
-          <!-- Inputs -->
+          
           <div class="calc-inputs">
             <div class="form-group">
               <label for="currency">Select Currency</label>
@@ -206,7 +503,6 @@
             </div>
           </div>
 
-          <!-- Outputs -->
           <div class="results-card">
             <span class="hero-stat-label">Required Hourly Rate</span>
             <div class="hero-stat-value" id="resHourlyRate">€36.50/hr</div>
@@ -249,49 +545,84 @@
 
             <button class="btn-action" onclick="window.print()">Export / Print Quote Sheet</button>
           </div>
+
+        </div>
+
+        <div class="calculator-content-body">
+          <h2>Comprehensive Freelance Pricing Guide & Professional Strategy</h2>
+          <p>Setting an accurate, sustainable hourly or project rate is one of the most critical responsibilities for independent professionals, digital nomads, consultants, graphic designers, software developers, and agency owners operating in today's competitive global marketplace.</p>
+          <p>Unfortunately, a vast majority of beginners fall into the classic trap of taking an equivalent employee wage, dividing it by standard hours, and assuming that figure covers their financial needs.</p>
+          <p>This approach completely ignores vital business realities such as operational overhead, self-employment taxes, unpaid administrative hours, and market fluctuations.</p>
+
+          <h3>1. The Myth of the 40-Hour Billable Workweek</h3>
+          <p>When transitioning from traditional employment to freelancing, many individuals mistakenly calculate their income based on a standard 40-hour workweek.</p>
+          <p>In reality, independent professionals rarely spend more than 20 to 25 hours per week on actual billable client work.</p>
+          <p>The remaining time is consumed by indispensable non-billable business operations, including:</p>
+          <ul>
+            <li><strong>Client Acquisition & Sales:</strong> Networking, writing proposals, pitching potential leads, and conducting discovery calls.</li>
+            <li><strong>Administrative Tasks:</strong> Bookkeeping, preparing invoices, managing contracts, tracking project scope, and communicating with clients.</li>
+            <li><strong>Marketing & Branding:</strong> Maintaining a professional portfolio, updating case studies, writing blog content, and managing social media presence.</li>
+            <li><strong>Professional Development:</strong> Researching new software tools, acquiring advanced technical skills, and keeping up with industry best practices.</li>
+          </ul>
+          <p>Failing to account for these non-billable hours will inevitably lead to severe overwork, financial stress, and burnout over medium and long-term operating cycles.</p>
+
+          <h3>2. Factoring in Business Overhead and Operational Expenses</h3>
+          <p>Running an independent practice incurs continuous operational costs that must be factored directly into your pricing structure.</p>
+          <p>Monthly and annual business overhead expenses typically include:</p>
+          <ul>
+            <li>Software subscriptions, cloud services, and specialized professional tools (SaaS licenses, Adobe Creative Cloud, project management apps).</li>
+            <li>Hardware depreciation, computer repairs, high-speed internet connectivity, and mobile communication bills.</li>
+            <li>Professional fees, including certified accountants, legal counsel, contract review services, and business liability insurance.</li>
+            <li>Coworking space memberships, private office rentals, or home-office utility allocations.</li>
+          </ul>
+          <p>Documenting every single recurring expense ensures that your calculated hourly rate protects your bottom line from unexpected leaks and hidden cost overruns.</p>
+
+          <h3>3. Navigating Taxes, Social Security, and Safety Buffers</h3>
+          <p>Unlike full-time employees whose employers automatically withhold income taxes and social contributions, independent contractors bear 100% of their tax obligations.</p>
+          <p>Depending on your jurisdiction, tax brackets, social insurance contributions, and municipal levies can easily consume 20% to 40% of your gross earnings.</p>
+          <p>RateCraft's calculation engine builds a protective buffer around your net target income, ensuring that your gross revenue properly absorbs these mandatory liabilities before you pay yourself.</p>
+
+          <h3>4. Transitioning from Hourly Rates to Value-Based Pricing</h3>
+          <p>While hourly calculators provide an essential baseline to guarantee profitability, experienced freelancers often transition toward value-based pricing models.</p>
+          <p>Instead of charging clients strictly for the hours logged, value-based pricing focuses on the tangible economic outcome, revenue growth, or time savings delivered to the client's business.</p>
+          <p>Once you establish your absolute minimum viable floor using RateCraft, you can confidently quote fixed project fees that reward your expertise and efficiency rather than penalizing you for working faster.</p>
+
+          <h2>Advanced Strategic Pricing Frameworks for Independent Consultants</h2>
+          <p>As your business matures, relying solely on basic hourly computations may limit your income potential.</p>
+          <p>Professional consultants leverage tiered pricing matrices, retainer agreements, and milestone billing structures to maximize predictability and client satisfaction.</p>
+          <ul>
+            <li><strong>Monthly Retainers:</strong> Securing dedicated blocks of hours upfront guarantees steady cash flow and aligns incentives between long-term partners.</li>
+            <li><strong>Milestone-Based Billing:</strong> Breaking large projects into phase deliverables (e.g., Discovery, Design, Implementation, QA) mitigates financial risk for both parties.</li>
+            <li><strong>Emergency / Rush Fees:</strong> Charging a 30% to 50% premium for expedited turnaround times compensates for disrupted schedules and after-hours exertion.</li>
+          </ul>
+
+          <h2>Industry Benchmarks & Cost Allocation Analysis</h2>
+          <p>Different professional disciplines require varied approaches to overhead management.</p>
+          <p>For instance, digital designers and video editors invest heavily in hardware setups and rendering storage arrays, whereas software engineers allocate more budget toward cloud hosting environments, API subscriptions, and developer tools.</p>
+          <p>Documenting these costs ensures accuracy across diverse business models.</p>
+
+          <h2>Frequently Asked Questions (FAQ)</h2>
+          
+          <h3>How do I determine my target net monthly income?</h3>
+          <p>Your target net monthly income should reflect the take-home pay required to comfortably cover your personal living expenses (housing, food, transport, healthcare), personal savings goals, and discretionary spending.</p>
+
+          <h3>What should I do if my calculated rate feels too high for my local market?</h3>
+          <p>If local clients cannot support your calculated minimum rate, consider expanding your target market globally via remote contracting platforms, refining your niche to target high-value clients, or optimizing your workflow to increase efficiency.</p>
+
+          <h3>How often should I recalculate my rates?</h3>
+          <p>It is recommended to review and adjust your rates at least once a year to account for inflation, increased business expenses, and growing professional experience.</p>
+
+          <h3>Are taxes automatically deducted by RateCraft?</h3>
+          <p>No, RateCraft calculates the gross revenue required so that after paying your estimated tax percentage and expenses, your net income remains untouched. You must handle actual tax remittances through your accountant or tax authority.</p>
+
+          <h3>Why is non-billable time so important in the formula?</h3>
+          <p>Because no freelancer works 40 hours a week purely on billable client tasks. Factoring in vacation and administrative downtime prevents underpricing and protects your hourly earnings.</p>
+
+          <h3>Can I use this calculator for fixed-price contracts?</h3>
+          <p>Yes, by multiplying your calculated hourly rate by your estimated total project hours, you arrive at a safe baseline floor price for fixed-scope deliverables.</p>
         </div>
       </section>
 
-      <!-- SECTION 2: GUIDE -->
-      <section id="guide" class="page-section">
-        <h1>Comprehensive Freelance Pricing Guide: How to Calculate Your Rates Realistically</h1>
-        <p>Setting an accurate, sustainable hourly or project rate is one of the most critical responsibilities for independent professionals, digital nomads, consultants, graphic designers, software developers, and agency owners. Unfortunately, a vast majority of beginners fall into the classic trap of taking an equivalent employee wage, dividing it by standard hours, and assuming that figure covers their financial needs. This approach completely ignores vital business realities such as operational overhead, self-employment taxes, unpaid administrative hours, and market fluctuations.</p>
-
-        <h2>1. The Myth of the 40-Hour Billable Workweek</h2>
-        <p>When transitioning from traditional employment to freelancing, many individuals mistakenly calculate their income based on a standard 40-hour workweek. In reality, independent professionals rarely spend more than 20 to 25 hours per week on actual billable client work. The remaining time is consumed by indispensable non-billable business operations, including:</p>
-        <ul>
-          <li><strong>Client Acquisition & Sales:</strong> Networking, writing proposals, pitching potential leads, and conducting discovery calls.</li>
-          <li><strong>Administrative Tasks:</strong> Bookkeeping, preparing invoices, managing contracts, tracking project scope, and communicating with clients.</li>
-          <li><strong>Marketing & Branding:</strong> Maintaining a professional portfolio, updating case studies, writing blog content, and managing social media presence.</li>
-          <li><strong>Professional Development:</strong> Researching new software tools, acquiring advanced technical skills, and keeping up with industry best practices.</li>
-        </ul>
-        <p>Failing to account for these non-billable hours will inevitably lead to severe overwork, financial stress, and burnout.</p>
-
-        <h2>2. Factoring in Business Overhead and Operational Expenses</h2>
-        <p>Running an independent practice incurs continuous operational costs that must be factored directly into your pricing structure. Monthly and annual business overhead expenses typically include:</p>
-        <ul>
-          <li>Software subscriptions, cloud services, and specialized professional tools (SaaS licenses).</li>
-          <li>Hardware depreciation, computer repairs, high-speed internet connectivity, and mobile communication bills.</li>
-          <li>Professional fees, including certified accountants, legal counsel, and business liability insurance.</li>
-          <li>Coworking space memberships, private office rentals, or home-office utility allocations.</li>
-        </ul>
-
-        <h2>3. Navigating Taxes, Social Security, and Safety Buffers</h2>
-        <p>Unlike full-time employees whose employers automatically withhold income taxes and social contributions, independent contractors bear 100% of their tax obligations. Depending on your jurisdiction, tax brackets, social insurance contributions, and municipal levies can easily consume 20% to 40% of your gross earnings. RateCraft's calculation engine builds a protective buffer around your net target income, ensuring that your gross revenue properly absorbs these mandatory liabilities before you pay yourself.</p>
-
-        <h2>4. Transitioning from Hourly Rates to Value-Based Pricing</h2>
-        <p>While hourly calculators provide an essential baseline to guarantee profitability, experienced freelancers often transition toward value-based pricing models. Instead of charging clients strictly for the hours logged, value-based pricing focuses on the tangible economic outcome, revenue growth, or time savings delivered to the client's business. Once you establish your absolute minimum viable floor using RateCraft, you can confidently quote fixed project fees that reward your expertise and efficiency rather than penalizing you for working faster.</p>
-
-        <h2>Frequently Asked Questions (FAQ)</h2>
-        <h3>How do I determine my target net monthly income?</h3>
-        <p>Your target net monthly income should reflect the take-home pay required to cover your personal living expenses (housing, groceries, transportation, healthcare), personal savings goals, and discretionary spending comfortably.</p>
-        <h3>What should I do if my calculated rate feels too high for my local market?</h3>
-        <p>If local clients cannot support your calculated minimum rate, consider expanding your target market globally via remote contracting platforms, refining your niche to target high-value clients, or optimizing your workflow to increase efficiency.</p>
-        <h3>How often should I recalculate my rates?</h3>
-        <p>It is recommended to review and adjust your rates at least once a year to account for inflation, increased business expenses, and growing professional experience.</p>
-      </section>
-
-      <!-- SECTION 3: ABOUT -->
       <section id="about" class="page-section">
         <h1>About RateCraft</h1>
         <p>RateCraft is a robust, free financial utility application engineered specifically to help independent creators, UI/UX designers, software engineers, copywriters, and consultants price their professional services with absolute mathematical clarity and confidence.</p>
@@ -299,7 +630,6 @@
         <p>Developed with a clean, client-side architecture, RateCraft ensures that your financial figures remain entirely private on your device, never transmitting sensitive income data to external servers.</p>
       </section>
 
-      <!-- SECTION 4: CONTACT -->
       <section id="contact" class="page-section">
         <h1>Contact Our Support Team</h1>
         <p>Do you have inquiries, constructive feedback, bug reports, or feature suggestions regarding RateCraft? We would love to hear from you. Please fill out the secure contact form below to get in touch with our team directly.</p>
@@ -311,119 +641,58 @@
         </form>
       </section>
 
-      <!-- SECTION 5: PRIVACY POLICY -->
       <section id="privacy" class="page-section">
         <h1>Privacy Policy</h1>
         <p><strong>Last Updated: August 2026</strong></p>
-        <p>At RateCraft, safeguarding the privacy, confidentiality, and security of our visitors and users is one of our most fundamental commitments. This comprehensive Privacy Policy document outlines the categories of data collected, recorded, and processed by RateCraft, as well as how we utilize and protect this information in strict compliance with international data protection standards, including the EU General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).</p>
-
+        <p>At RateCraft, safeguarding the privacy, confidentiality, and security of our visitors and users is one of our most fundamental commitments. This comprehensive Privacy Policy document outlines the categories of data collected, recorded, and processed by RateCraft, as well as how we utilize and protect this information in strict compliance with international data protection standards.</p>
         <h2>1. Information Collection and Local Processing</h2>
-        <p>RateCraft functions primarily as a client-side web utility tool. Data is handled through two distinct mechanisms:</p>
-        <ul>
-          <li><strong>Locally Processed User Inputs:</strong> When you utilize our calculator interface, all monetary targets, expense figures, and operational inputs are processed completely inside your local web browser environment. RateCraft never transmits, stores, logs, or archives your private financial figures on external servers or databases. Communications submitted via our contact form capture only the name, email address, and message content provided directly by you to facilitate correspondence.</li>
-          <li><strong>Automatically Collected Technical Metadata:</strong> Similar to standard web applications, our servers automatically record non-personally identifiable technical records. This encompasses internet protocol (IP) addresses, browser type and version, Internet Service Provider (ISP), date and time timestamps, referring and exit web pages, and device operating systems.</li>
-        </ul>
-
-        <h2>2. Permitted Use of Information</h2>
-        <p>The technical data collected is applied exclusively for the following operational objectives:</p>
-        <ul>
-          <li>Maintaining, optimizing, and securing the performance, speed, and reliability of the RateCraft platform.</li>
-          <li>Analyzing aggregated traffic trends and usage metrics to improve user experience.</li>
-          <li>Responding efficiently to direct support requests and inquiries submitted through our contact interface.</li>
-        </ul>
-
-        <h2>3. Third-Party Advertising and Analytics</h2>
-        <p>RateCraft utilizes reputable third-party performance analytics and advertising networks (such as Google AdSense) to display relevant advertisements and measure site interactions. These third-party vendors deploy cookies, web beacons, and tracking scripts to gather anonymous usage metrics. Users can review respective third-party privacy policies for granular controls.</p>
-
-        <h2>4. Data Protection Rights under GDPR and CCPA</h2>
-        <p>Depending on your geographic jurisdiction, you maintain specific legal rights concerning your personal data:</p>
-        <ul>
-          <li><strong>Right of Access:</strong> Request copies of any personal data maintained concerning your interactions.</li>
-          <li><strong>Right to Rectification:</strong> Request correction of inaccurate or incomplete records.</li>
-          <li><strong>Right to Erasure:</strong> Request deletion of personal records under applicable statutory conditions.</li>
-          <li><strong>Right to Restrict Processing:</strong> Limit active processing operations of your data.</li>
-        </ul>
-        <p>To exercise any of these statutory rights, please reach out via our designated contact channel.</p>
-
-        <h2>5. Protection of Minors</h2>
-        <p>RateCraft does not knowingly solicit or collect personally identifiable information from children under the age of 13. If you suspect that a minor has submitted personal information, please notify us immediately so we can remove such records.</p>
+        <p>RateCraft functions primarily as a client-side web utility tool. All monetary targets, expense figures, and operational inputs are processed completely inside your local web browser environment. RateCraft never transmits, stores, logs, or archives your private financial figures on external servers or databases.</p>
       </section>
 
-      <!-- SECTION 6: TERMS OF SERVICE -->
       <section id="terms" class="page-section">
         <h1>Terms of Service</h1>
         <p><strong>Last Updated: August 2026</strong></p>
-
         <h2>1. Acceptance of Binding Terms</h2>
-        <p>By accessing, browsing, or utilizing RateCraft (the "Service"), you explicitly acknowledge that you have read, comprehended, and agreed to be bound by these Terms of Service. If you do not agree with any provision outlined herein, you must immediately cease all utilization of the website.</p>
-
+        <p>By accessing, browsing, or utilizing RateCraft, you explicitly acknowledge that you have read, comprehended, and agreed to be bound by these Terms of Service.</p>
         <h2>2. Professional Financial Disclaimer</h2>
-        <p><strong>CRITICAL NOTICE:</strong> All calculations, financial estimations, rate recommendations, and analytical outputs generated by RateCraft are provided strictly for general educational and informational purposes only.</p>
-        <p>RateCraft does NOT offer certified accounting, tax, legal, or professional financial advice. Users assume absolute responsibility for verifying all monetary figures, tax burdens, and pricing structures alongside a licensed accountant, tax specialist, or certified financial advisor prior to issuing commercial quotations or executing binding contracts.</p>
-
-        <h2>3. Intellectual Property Ownership</h2>
-        <p>All source code, UI layouts, aesthetic branding elements, typography, graphics, and interactive calculator algorithms are the exclusive intellectual property of RateCraft and its respective owner. You are granted a limited, revocable, non-exclusive license to utilize the web utility for personal and internal business pricing estimation. Unauthorized scraping, reverse engineering, redistribution, or code duplication is strictly prohibited.</p>
-
-        <h2>4. Limitation of Liability</h2>
-        <p>Under no circumstances shall RateCraft, its creator, or affiliates be held liable for any direct, indirect, incidental, consequential, special, or exemplary damages—including but not limited to loss of revenue, lost client contracts, miscalculated overhead, or business interruption—arising from the use or inability to use the Service.</p>
-
-        <h2>5. Service Modifications and Availability</h2>
-        <p>We retain the unrestricted right to modify, suspend, or terminate any aspect of the calculator tool, website features, or published content at any moment without prior notice or legal liability.</p>
+        <p>All calculations, financial estimations, rate recommendations, and analytical outputs generated by RateCraft are provided strictly for general educational and informational purposes only and do not constitute certified professional financial advice.</p>
       </section>
 
-      <!-- SECTION 7: COOKIE POLICY -->
       <section id="cookies" class="page-section">
         <h1>Cookie Policy</h1>
         <p><strong>Last Updated: August 2026</strong></p>
         <p>This Cookie Policy clarifies what cookies are, how RateCraft deploys them across our web platform, and how you can manage your personal tracking preferences in compliance with global privacy regulations.</p>
-
-        <h2>1. Understanding Cookies</h2>
-        <p>Cookies are small text files downloaded and stored on your computing device or smartphone when you visit a web page. They are universally applied to enable websites to function smoothly, elevate user browsing efficiency, and deliver traffic analytics to site administrators.</p>
-
-        <h2>2. Classification of Cookies Utilized</h2>
-        <p>RateCraft utilizes cookies for essential functional and analytical objectives:</p>
-        <ul>
-          <li><strong>Essential & Functional Cookies:</strong> Required for fundamental site operations, such as preserving your cookie consent preference and maintaining your active currency selection (€, $, £) or calculator state during your browsing session.</li>
-          <li><strong>Performance & Analytics Cookies:</strong> Enable us to measure how visitors navigate through our platform by collecting anonymous metadata regarding page views, traffic pathways, and performance diagnostics to optimize load speeds.</li>
-        </ul>
-
-        <h2>3. Managing and Disabling Cookies</h2>
-        <p>You retain full authority to accept or decline non-commercial cookies at any stage using our interactive Cookie Banner or browser controls. Most standard web browsers allow you to block or purge stored cookies directly through settings. Note that restricting essential cookies may impact specific session preferences.</p>
       </section>
 
     </main>
   </div>
 
-  <!-- Footer -->
   <footer>
     <div class="footer-container">
       <div>
-        <a href="#" class="brand" onclick="switchTab('calculator'); return false;">
+        <a class="brand" onclick="switchTab('calculator')">
           <span class="brand-icon">$/hr</span> RateCraft
         </a>
         <p style="font-size:0.85rem; color: var(--text-muted); margin-top:0.5rem;">© 2026 RateCraft. All financial calculations are estimates.</p>
       </div>
       <div class="footer-links">
-        <a href="#privacy" onclick="switchTab('privacy')">Privacy Policy</a>
-        <a href="#terms" onclick="switchTab('terms')">Terms of Service</a>
-        <a href="#cookies" onclick="switchTab('cookies')">Cookie Policy</a>
-        <a href="#contact" onclick="switchTab('contact')">Contact</a>
+        <a onclick="switchTab('privacy')">Privacy Policy</a>
+        <a onclick="switchTab('terms')">Terms of Service</a>
+        <a onclick="switchTab('cookies')">Cookie Policy</a>
+        <a onclick="switchTab('contact')">Contact</a>
       </div>
     </div>
   </footer>
 
-  <!-- GDPR Cookie Banner -->
   <div id="cookieBanner" class="cookie-banner" style="display:none;">
-    <div>We utilize cookies for performance analytics and session preferences to keep RateCraft functional. Read our <a href="#cookies" onclick="switchTab('cookies')" style="color:#38bdf8;">Cookie Policy</a>.</div>
+    <div>We utilize cookies for performance analytics and session preferences to keep RateCraft functional. Read our <a onclick="switchTab('cookies')" style="color:#38bdf8; cursor:pointer;">Cookie Policy</a>.</div>
     <div class="cookie-actions">
       <button class="btn-cookie btn-cookie-accept" onclick="acceptCookies()">Accept All</button>
       <button class="btn-cookie btn-cookie-decline" onclick="acceptCookies()">Decline</button>
     </div>
   </div>
 
-  <!-- JavaScript Logic -->
   <script>
-    // Tab Switching Logic
     function switchTab(tabId) {
       document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
@@ -431,13 +700,12 @@
       const targetSec = document.getElementById(tabId);
       if (targetSec) targetSec.classList.add('active');
 
-      const activeLink = document.querySelector(`.nav-link[href="#${tabId}"]`);
+      const activeLink = document.querySelector(`.nav-link[onclick*="${tabId}"]`);
       if (activeLink) activeLink.classList.add('active');
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Rate Calculator Logic
     function calculateRate() {
       const curr = document.getElementById('currency').value;
       document.querySelectorAll('.curr-symbol').forEach(el => el.textContent = curr);
@@ -451,7 +719,6 @@
       const workingWeeks = Math.max(1, 52 - offWeeks);
       const annualBillableHours = workingWeeks * hoursPerWeek;
 
-      // Calculations
       const annualNetGoal = targetNetMonthly * 12;
       const annualExpenses = monthlyExpenses * 12;
       const grossYearlyRequired = (annualNetGoal + annualExpenses) / (1 - taxPercentage);
@@ -459,14 +726,12 @@
       const hourlyRate = annualBillableHours > 0 ? (grossYearlyRequired / annualBillableHours) : 0;
       const minProjectPrice = hourlyRate * 10;
 
-      // UI Updates
       document.getElementById('resHourlyRate').textContent = `${curr}${hourlyRate.toFixed(2)}/hr`;
       document.getElementById('resMinProject').textContent = `${curr}${Math.round(minProjectPrice).toLocaleString()}`;
       document.getElementById('resGrossMonthly').textContent = `${curr}${Math.round(grossMonthly).toLocaleString()}`;
       document.getElementById('resGrossYearly').textContent = `${curr}${Math.round(grossYearlyRequired).toLocaleString()}`;
       document.getElementById('resBillableHours').textContent = `${Math.round(annualBillableHours).toLocaleString()} hrs`;
 
-      // Breakdown Bar Updates
       const expPercent = Math.round((annualExpenses / grossYearlyRequired) * 100) || 10;
       const taxPercent = Math.round(((grossYearlyRequired * taxPercentage) / grossYearlyRequired) * 100) || 25;
       const netPercent = 100 - expPercent - taxPercent;
@@ -476,7 +741,6 @@
       document.getElementById('barNet').style.width = netPercent + '%';
     }
 
-    // Cookie Banner Logic
     function acceptCookies() {
       localStorage.setItem('ratecraft_cookies', 'accepted');
       document.getElementById('cookieBanner').style.display = 'none';
